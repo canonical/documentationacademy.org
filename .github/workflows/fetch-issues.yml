@@ -46,7 +46,7 @@ jobs:
             --repo "$REPO_URL" \
             --limit 5 \
             --state open \
-            --json number,title,url,author.labels \
+            --json number,title,url,author,labels \
             > _data/latest-issues.json
         # The 'env' key makes the GH_TOKEN available to the 'gh' command
         env:
