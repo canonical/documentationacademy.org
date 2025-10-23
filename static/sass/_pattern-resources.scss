@@ -1,0 +1,44 @@
+@mixin design-p-resources {
+  .resources__content-thumb {
+    padding: 0.5rem;
+
+    &.typeface {
+      background-color: $color-light;
+      height: min-content;
+      padding: 1.5rem 0.625rem 0.625rem;
+    }
+
+    &.logo_thumb {
+      margin-bottom: 0.5rem;
+    }
+
+    &.icons_thumb {
+      background-color: $color-light;
+      display: grid;
+      grid-template-columns: repeat(10, minmax(0, 1fr));
+
+      .icon__item {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+
+  .resources__dark_mode {
+    background-color: $color-dark !important;
+    color: $color-x-light;
+  }
+
+  .resources_logo {
+    /* remove rounded corners from images to avoid distorting logos */
+    border-radius: 0;
+    height: 3rem;
+  }
+
+  .email-signature-frame {
+    background-color: white;
+    display: block;
+    width: 100%;
+  }
+}

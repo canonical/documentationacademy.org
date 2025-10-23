@@ -1,0 +1,13 @@
+#! /usr/bin/env bash
+
+set -euo pipefail
+
+RUN_COMMAND="gunicorn webapp.app:app --name $(hostname) --workers=2 --bind $1"
+
+if [ -z ${FLASK_DEBUG+x} ]; then
+    RUN_COMMAND="${RUN_COMMAND} --reload --log-level debug --timeout 9999"
+else
+    RUN_COMMAND="${RUN_COMMAND} -w 2"
+fi
+
+${RUN_COMMAND}

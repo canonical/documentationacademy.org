@@ -1,0 +1,48 @@
+{
+  "name": "documentationacademy-org",
+  "description": "marketing site for the Canonical Open Documentation Academy",
+  "scripts": {
+    "start": "yarn run build && concurrently --raw 'yarn run watch' 'yarn run serve'",
+    "serve": "./entrypoint 0.0.0.0:${PORT}",
+    "watch": "yarn run watch-css && yarn run watch-js",
+    "watch-js": "webpack --watch",
+    "watch-css": "watch -p 'static/sass/**/*.scss' -c 'yarn run build'",
+    "build": "yarn run build-css && yarn run build-js && yarn run copy-macros",
+    "build-js": "yarn run webpack && yarn run build-latest-news",
+    "build-latest-news": "cp node_modules/@canonical/latest-news/dist/latest-news.js static/js/dist",
+    "build-css": "sass static/sass/styles.scss static/css/styles.css --load-path=node_modules --style=compressed && postcss --map false --use autoprefixer --replace 'static/css/**/*.css'",
+    "copy-macros": "rm -rf templates/_macros && cp -r node_modules/vanilla-framework/templates/_macros templates/_macros",
+    "lint-python": "flake8 --extend-ignore=E203 webapp && black --check --line-length 79 webapp",
+    "lint-scss": "stylelint static/**/*.scss",
+    "lint-js": "prettier -c 'static/js/*.{js,jsx,ts,tsx}'",
+    "format-python": "black --line-length 79 webapp",
+    "format-scss": "prettier -w 'static/sass/*.scss'",
+    "format-js": "prettier -w 'static/js/*.{js,jsx,ts,tsx}'",
+    "format-prettier": "yarn run format-scss && yarn run format-js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:canonical/documentationacademy.org.git"
+  },
+  "author": "canonical",
+  "license": "ISC",
+  "dependencies": {
+    "@canonical/cookie-policy": "3.6.5",
+    "@canonical/latest-news": "1.5.0",
+    "autoprefixer": "10.4.13",
+    "global": "^4.4.0",
+    "postcss": "8.4.49",
+    "postcss-cli": "11.0.0",
+    "sass": "1.81.0",
+    "vanilla-framework": "4.20.3",
+    "webpack": "^5.97.1"
+  },
+  "devDependencies": {
+    "concurrently": "7.6.0",
+    "prettier": "3.4.1",
+    "stylelint": "16.11.0",
+    "stylelint-config-standard-scss": "13.1.0",
+    "watch-cli": "0.2.3",
+    "webpack-cli": "^5.1.4"
+  }
+}
