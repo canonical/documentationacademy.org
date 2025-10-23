@@ -1,7 +1,7 @@
+import json
 import requests
 import os
 import flask
-import yaml
 
 from flask import render_template, request
 from urllib.parse import parse_qs, urlencode
@@ -19,10 +19,14 @@ app = FlaskBase(
 
 session = requests.Session()
 
+with open("_data/latest-issues.json", "r") as stream:
+    latest_issues = json.load(stream)
+
 
 @app.context_processor
 def global_template_context():
     return {
+        "latest_issues": latest_issues,
         "path": flask.request.path,
     }
 

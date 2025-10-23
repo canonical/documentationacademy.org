@@ -20,6 +20,7 @@ package-lock.json
 *.*.map
 /static/js/dist/*.js
 /templates/_macros
+_data/latest-issues.yml
 
 # [env] Local environment settings
 .*.hash

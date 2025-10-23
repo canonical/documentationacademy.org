@@ -49,46 +49,27 @@
     <div class="row--25-75">
       <hr class="p-rule" />
       <div class="col">
-        <h2>Current issues</h2>
+        <h2>Latest issues</h2>
       </div>
       <div class="col">
-        <div class="p-section--shallow">
-          <p class="p-heading--4">
-            <a href="https://github.com/canonical/open-documentation-academy/issues/306">Snapcraft: Update example Rust snap to core24</a>
-            <span class="p-chip is-readonly is-inline is-dense">Code</span>
-            <span class="p-chip--information is-readonly is-inline is-dense">Size 5</span>
-          </p>
-        </div>
-        <div class="p-section--shallow">
-          <p class="p-heading--4">
-            <a href="https://github.com/canonical/open-documentation-academy/issues/307">Snapcraft: Update example pre-built snap to core24</a>
-            <span class="p-chip is-readonly is-inline is-dense">Code</span>
-            <span class="p-chip--information is-readonly is-inline is-dense">Size 5</span>
-          </p>
-        </div>
-        <div class="p-section--shallow">
-          <p class="p-heading--4">
-            <a href="https://github.com/canonical/open-documentation-academy/issues/308">Rockcraft: Add rockcraft.yaml reference powered by Kitbash</a>
-            <span class="p-chip is-readonly is-inline is-dense">Code</span>
-            <span class="p-chip--information is-readonly is-inline is-dense">Size 5</span>
-          </p>
-        </div>
-        <div class="p-section--shallow">
-          <p class="p-heading--4">
-            <a href="https://github.com/canonical/open-documentation-academy/issues/309">Snapcraft: Redirect all snapcraft.io links in CLI messages</a>
-            <span class="p-chip is-readonly is-inline is-dense">Code</span>
-            <span class="p-chip--information is-readonly is-inline is-dense">Size 5</span>
-          </p>
-        </div>
-        <div class="p-section--shallow">
-          <p class="p-heading--4">
-            <a href="https://github.com/canonical/open-documentation-academy/issues/310">Charmcraft: Redo in-page links</a>
-            <span class="p-chip is-readonly is-inline is-dense">Code</span>
-            <span class="p-chip--information is-readonly is-inline is-dense">Size 5</span>
-          </p>
-        </div>
+        {% for issue in latest_issues %}
+          <div class="p-section--shallow">
+            <p class="p-heading--4">
+              <a href="https://github.com/canonical/open-documentation-academy/issues/{{ issue.number }}">{{ issue.title }}</a>
+              {% for label in issue.labels %}
+                {% if 'good first issue' in label.name %}
+                <span class="p-chip--positive is-readonly is-inline is-dense">{{ label.name }}</span>
+                {% elif 'size' in label.name %}
+                <span class="p-chip--information is-readonly is-inline is-dense">{{ label.name|capitalize }}</span>
+                {% else %}
+                <span class="p-chip is-readonly is-inline is-dense">{{ label.name }}</span>
+                {% endif %}
+              {% endfor %}
+            </p>
+          </div>
+        {% endfor %}
         <div class="p-cta-block">
-          <a href="https://github.com/canonical/open-documentation-academy/issues">See all current issues&nbsp;&rsaquo;</a>
+          <a class="p-heading--4" href="https://github.com/canonical/open-documentation-academy/issues">See all current issues&nbsp;&rsaquo;</a>
         </div>
       </div>
     </div>
@@ -222,7 +203,7 @@ regardless of the language, and for the betterment of all open source.
         <div class="p-cta-block">
           <a href="https://canonical.com/careers/web-and-design"
              target="_blank"
-             class="p-button--positive u-no-margin--bottom">Join our discussion channel&nbsp;&rsaquo;</a>
+             class="p-button--positive u-no-margin--bottom">Join our discussion channel</a>
         </div>
       </div>
     </div>
