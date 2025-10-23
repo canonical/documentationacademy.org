@@ -47,7 +47,6 @@ jobs:
             --limit 5 \
             --state open \
             --json number,title,url,author.labels \
-            --order desc \
             --sort created \
             > _data/latest-issues.json
         # The 'env' key makes the GH_TOKEN available to the 'gh' command
