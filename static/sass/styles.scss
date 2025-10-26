@@ -8,10 +8,6 @@
 @import "@canonical/cookie-policy/build/css/cookie-policy";
 
 // Site patterns
-@import "pattern-resources";
-@import "pattern-font-tester";
-@include design-p-font-tester;
-@include design-p-resources;
 @include vf-p-icons;
 @include vf-p-icon-highlight-off;
 @include vf-p-icon-highlight-on;
@@ -63,38 +59,3 @@
 @include vf-p-icon-status-in-progress;
 @include vf-p-icon-status-queued-small;
 @include vf-p-icon-status-queued;
-
-// Blockquote style override until officially in vanilla
-.p-pull-quote {
-  border-left: 3px solid #e95420;
-  padding-bottom: 0.75rem;
-
-  .p-pull-quote__quote {
-    font-style: italic;
-
-    &:first-of-type::before,
-    &:last-of-type::after {
-      content: "";
-    }
-  }
-
-  .p-pull-quote__citation {
-    font-style: normal;
-    margin-bottom: 0;
-  }
-}
-
-.article-image a img {
-  height: 100%;
-}
-
-.font-tester__demo {
-  height: 300px;
-  margin: 2.5rem 0;
-  overflow-y: auto;
-  width: 100%;
-}
-
-.is-ubuntu-mono {
-  font-family: "Ubuntu Mono variable", monospace;
-}
