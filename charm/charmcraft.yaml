@@ -1,0 +1,36 @@
+# This file configures Charmcraft.
+# See https://juju.is/docs/sdk/charmcraft-config for guidance.
+
+name: open-documentation-academy-flask-app
+
+bases:
+  - build-on:
+      - name: ubuntu
+        channel: "22.04"
+    run-on:
+      - name: ubuntu
+        channel: "22.04"
+
+# (Required)
+summary: Open Documentation Academy Flask Application
+
+# (Required)
+description: |
+  The Open Documentation Academy Flask Application charm provides a platform for collaborative documentation efforts in open source projects.
+
+  This charm hosts a Flask application that serves as a hub for documentation resources, tutorials, and community contributions.
+
+  It integrates with GitHub to fetch and display the latest issues, facilitating community engagement and contribution.
+
+  This charm is useful for open source contributors, maintainers, and anyone interested in improving documentation practices within their projects.
+
+extensions:
+  - flask-framework
+# Uncomment the integrations used by your application
+# requires:
+#   mysql:
+#     interface: mysql_client
+#     limit: 1
+#   postgresql:
+#     interface: postgresql_client
+#     limit: 1
