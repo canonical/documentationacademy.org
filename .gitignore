@@ -4,7 +4,6 @@
 # [os] OS & editor files
 ._*
 *~
-.vscode
 .idea
 
 # [cache] Cache and backup
