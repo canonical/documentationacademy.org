@@ -3,6 +3,8 @@
 
 name: open-documentation-academy-flask-app
 
+type: charm
+
 bases:
   - build-on:
       - name: ubuntu
@@ -31,9 +33,3 @@ requires:
   nginx-route:
     interface: nginx-route
     limit: 1
-
-config:
-  options:
-    secret:
-      type: secret
-      description: Secret key for Flask application security (key).

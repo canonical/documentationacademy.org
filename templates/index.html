@@ -57,12 +57,12 @@
             <p class="p-heading--4">
               <a href="https://github.com/canonical/open-documentation-academy/issues/{{ issue.number }}">{{ issue.title }}</a>
               {% for label in issue.labels %}
-                {% if 'good first issue' in label.name %}
-                <span class="p-chip--positive is-readonly is-inline is-dense">{{ label.name }}</span>
-                {% elif 'size' in label.name %}
-                <span class="p-chip--information is-readonly is-inline is-dense">{{ label.name|capitalize }}</span>
+                {% if 'good first issue' in label %}
+                <span class="p-chip--positive is-readonly is-inline is-dense">{{ label }}</span>
+                {% elif 'size' in label %}
+                <span class="p-chip--information is-readonly is-inline is-dense">{{ label|capitalize }}</span>
                 {% else %}
-                <span class="p-chip is-readonly is-inline is-dense">{{ label.name }}</span>
+                <span class="p-chip is-readonly is-inline is-dense">{{ label }}</span>
                 {% endif %}
               {% endfor %}
             </p>
