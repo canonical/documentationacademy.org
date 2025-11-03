@@ -98,7 +98,6 @@ def fetch_github_issues():
             "sort": "created",
             "direction": "desc",
             "per_page": 15,
-            "pulls": "false",
         }
 
         response = session.get(github_url, params=params, timeout=10)
