@@ -120,9 +120,9 @@ def fetch_github_issues():
                 "created_at": issue["created_at"],
                 "updated_at": issue["updated_at"],
                 "user": {
-                    "login": issue["user"]["login"],
-                    "avatar_url": issue["user"]["avatar_url"],
-                    "url": issue["user"]["html_url"],
+                    "login": (issue.get("user") or {}).get("login"),
+                    "avatar_url": (issue.get("user") or {}).get("avatar_url"),
+                    "url": (issue.get("user") or {}).get("html_url"),
                 },
                 "labels": [label["name"] for label in issue.get("labels", [])],
                 "comments": issue.get("comments", 0),
