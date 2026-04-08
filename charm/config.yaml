@@ -1,0 +1,63 @@
+options:
+  flask-application-root:
+    description: Path in which the application / web server is mounted. This configuration
+      will set the FLASK_APPLICATION_ROOT environment variable. Run
+      `app.config.from_prefixed_env()` in your Flask application in order to receive
+      this configuration.
+    type: string
+  flask-debug:
+    description: Whether Flask debug mode is enabled.
+    type: boolean
+  flask-env:
+    description: What environment the Flask app is running in, by default it's 'production'.
+    type: string
+  flask-permanent-session-lifetime:
+    description: Time in seconds for the cookie to expire in the Flask application
+      permanent sessions. This configuration will set the
+      FLASK_PERMANENT_SESSION_LIFETIME environment variable. Run
+      `app.config.from_prefixed_env()` in your Flask application in order to receive
+      this configuration.
+    type: int
+  flask-preferred-url-scheme:
+    default: HTTPS
+    description: Scheme for generating external URLs when not in a request context
+      in the Flask application. By default, it's "HTTPS". This configuration will
+      set the FLASK_PREFERRED_URL_SCHEME environment variable. Run
+      `app.config.from_prefixed_env()` in your Flask application in order to receive
+      this configuration.
+    type: string
+  flask-secret-key:
+    description: The secret key used for securely signing the session cookie and for
+      any other security related needs by your Flask application. This configuration
+      will set the FLASK_SECRET_KEY environment variable. Run
+      `app.config.from_prefixed_env()` in your Flask application in order to receive
+      this configuration.
+    type: string
+  flask-secret-key-id:
+    description: This configuration is similar to `flask-secret-key`, but instead
+      accepts a Juju user secret ID. The secret should contain a single key, "value",
+      which maps to the actual Flask secret key.
+    type: secret
+  flask-session-cookie-secure:
+    description: Set the secure attribute in the Flask application cookies. This
+      configuration will set the FLASK_SESSION_COOKIE_SECURE environment variable.
+      Run `app.config.from_prefixed_env()` in your Flask application in order to
+      receive this configuration.
+    type: boolean
+  webserver-keepalive:
+    description: Time in seconds for webserver to wait for requests on a Keep-Alive
+      connection.
+    type: int
+  webserver-threads:
+    description: Run each webserver worker with the specified number of threads.
+    type: int
+  webserver-timeout:
+    description: Time in seconds to kill and restart silent webserver workers.
+    type: int
+  webserver-worker-class:
+    description: The webserver worker process class for handling requests. Can be
+      either 'gevent' or 'sync'.
+    type: string
+  webserver-workers:
+    description: The number of webserver worker processes for handling requests.
+    type: int
