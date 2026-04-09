@@ -215,7 +215,7 @@ jobs:
         run: |
           export JUJU_MODEL=admin/$JUJU_MODEL
           echo "Deploying to $JUJU_MODEL"
-          echo "{\"ImageName\": \"${{ needs.rockcraft-pack.outputs.image_url }}\", \"username\":\"${{ secrets.GHCR_READ_USERNAME }}\", \"password\":\"${{ secrets.GHCR_READ_TOKEN }}\"}" > ./image_metadata.json
+          echo "{\"ImageName\": \"${{ needs.rockcraft-pack.outputs.image_url }}\"}" > ./image_metadata.json
           cat ./image_metadata.json
           ls -la
 
