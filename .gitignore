@@ -33,3 +33,6 @@ _data/latest-issues.json
 .venv/
 .dotrun.json
 
+# Charm
+*.rock
+

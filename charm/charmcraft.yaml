@@ -1,15 +1,13 @@
 # This file configures Charmcraft.
 # See https://juju.is/docs/sdk/charmcraft-config for guidance.
 
-name: open-documentation-academy-flask-app
+name: documentationacademy-org
 
-bases:
-  - build-on:
-      - name: ubuntu
-        channel: "22.04"
-    run-on:
-      - name: ubuntu
-        channel: "22.04"
+type: charm
+
+base: ubuntu@22.04
+platforms:
+  amd64:
 
 # (Required)
 summary: Open Documentation Academy Flask Application
@@ -26,11 +24,3 @@ description: |
 
 extensions:
   - flask-framework
-# Uncomment the integrations used by your application
-# requires:
-#   mysql:
-#     interface: mysql_client
-#     limit: 1
-#   postgresql:
-#     interface: postgresql_client
-#     limit: 1
