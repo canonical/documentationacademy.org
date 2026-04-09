@@ -223,8 +223,8 @@ jobs:
           APP_NAME="documentationacademy-org"
           if juju status --format=json 2>/dev/null | jq -e ".applications.\"$APP_NAME\"" > /dev/null; then
               echo "$APP_NAME is already deployed, refreshing..."
-              juju refresh $APP_NAME --path=./documentationacademy_amd64.charm --resource flask-app-image=./image_metadata.json
+              juju refresh $APP_NAME --path=./documentationacademy-org_amd64.charm --resource flask-app-image=./image_metadata.json
           else
               echo "$APP_NAME is not deployed, deploying..."
-              juju deploy ./documentationacademy_amd64.charm --resource flask-app-image=./image_metadata.json $APP_NAME
+              juju deploy ./documentationacademy-org_amd64.charm --resource flask-app-image=./image_metadata.json $APP_NAME
           fi

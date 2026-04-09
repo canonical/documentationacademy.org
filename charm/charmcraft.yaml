@@ -1,17 +1,13 @@
 # This file configures Charmcraft.
 # See https://juju.is/docs/sdk/charmcraft-config for guidance.
 
-name: open-documentation-academy-flask-app
+name: documentationacademy-org
 
 type: charm
 
-bases:
-  - build-on:
-      - name: ubuntu
-        channel: "22.04"
-    run-on:
-      - name: ubuntu
-        channel: "22.04"
+base: ubuntu@22.04
+platforms:
+  amd64:
 
 # (Required)
 summary: Open Documentation Academy Flask Application
@@ -28,8 +24,3 @@ description: |
 
 extensions:
   - flask-framework
-
-requires:
-  nginx-route:
-    interface: nginx-route
-    limit: 1
