@@ -30,22 +30,26 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Check branch
         id: check-branch
         run: |
-          # make sure that the commit sha is from the main branch
-          # otherwise, fail the workflow
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
-            if [ "${{ github.event.inputs.commit }}" == "HEAD" ]; then
+            COMMIT="${{ github.event.inputs.commit }}"
+            
+            if [ "$COMMIT" == "HEAD" ]; then
               echo "ref=main" >> $GITHUB_OUTPUT
             else
-              echo "ref=${{ github.event.inputs.commit }}" >> $GITHUB_OUTPUT
-              is_main=$(git branch -r --contains ${{ github.event.inputs.commit }} | grep -c main)
-                if [ $is_main -eq 0 ]; then
-                  echo "Commit is not from the main branch"
-                  echo -e "> [!WARNING]\n> Commit is not from the main branch" >> $GITHUB_STEP_SUMMARY
-                fi
+              echo "ref=$COMMIT" >> $GITHUB_OUTPUT
+              git fetch origin main
+              
+              # Check if commit is in main branch and fail for Production if not
+              if ! git merge-base --is-ancestor $COMMIT origin/main && [ "${{ github.event.inputs.environment }}" == "Production" ]; then
+                echo -e "> [!ERROR]\n> Commit is not from the main branch. Production deployments require commits from main." >> $GITHUB_STEP_SUMMARY
+                exit 1
+              fi
             fi
           else
             echo "ref=${GITHUB_SHA}" >> $GITHUB_OUTPUT
@@ -80,8 +84,7 @@ jobs:
       - name: Build Assets
         run: |
           yarn install
-          yarn run build:scss
-          yarn run build:ts
+          yarn run build
 
       - name: Setup LXD
         if: steps.rock-cache.outputs.cache-hit != 'true'
@@ -118,7 +121,7 @@ jobs:
           rockcraft.skopeo --insecure-policy copy oci-archive:$(ls *.rock) docker://${{ steps.image_url.outputs.ghcr_image_url }} --dest-creds ${{ github.repository_owner }}:${{ secrets.GITHUB_TOKEN }}
 
   charmcraft-pack:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
     needs: commit-check
     steps:
       - name: Checkout code
